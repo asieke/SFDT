@@ -1,0 +1,12 @@
+@tailwind base;
+
+@layer base {
+  body {
+    @apply bg-slate-900;
+    @apply pt-8;
+    @apply text-slate-300;
+  }
+}
+
+@tailwind components;
+@tailwind utilities;
