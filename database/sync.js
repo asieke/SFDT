@@ -5,7 +5,7 @@
  *******************************************/
 
 const axios = require('axios');
-const db = require('./index.js');
+const { db } = require('./index.js');
 const { STOCKS } = require('./data.js');
 
 const url = 'https://data.alpaca.markets';
@@ -19,32 +19,28 @@ const options = {
 };
 
 const getPrices = async (ticker = 'AAPL') => {
-  for (let y = 2018; y <= 2021; y++) {
-    let path = `/v2/stocks/${ticker}/bars?start=${y}-01-01&end=${
-      y + 1
-    }-01-01&timeframe=1Hour&limit=10000`;
+  let path = `/v2/stocks/${ticker}/bars?start=2021-01-01&end=2022-01-01&timeframe=1Hour&limit=10000`;
 
-    let res = await axios.get(url + path, options);
-    let bars = res.data.bars;
+  let res = await axios.get(url + path, options);
+  let bars = res.data.bars;
 
-    for (let i = 0; i < bars.length; i++) {
-      console.log(ticker, bars[i].t);
-      let obj = {
-        date: bars[i].t,
-        ticker: ticker,
-        open: bars[i].o,
-        close: bars[i].c,
-        high: bars[i].h,
-        low: bars[i].l,
-        avg: bars[i].vw,
-        vol: bars[i].v,
-      };
+  for (let i = 0; i < bars.length; i++) {
+    console.log(ticker, bars[i].t);
+    let obj = {
+      date: bars[i].t,
+      ticker: ticker,
+      open: bars[i].o,
+      close: bars[i].c,
+      high: bars[i].h,
+      low: bars[i].l,
+      avg: bars[i].vw,
+      vol: bars[i].v,
+    };
 
-      try {
-        await db.Price.create(obj);
-      } catch (err) {
-        console.log(err);
-      }
+    try {
+      await db.Price.create(obj);
+    } catch (err) {
+      console.log(err);
     }
   }
 };
