@@ -11,3 +11,23 @@ export const Button = ({ size, children, onClick }) => {
     </button>
   );
 };
+
+export const Countdown = () => (
+  // https://res.cloudinary.com/dkit4ixkx/image/upload/v1643137690/videoplayback_uwltd5.gif
+
+  <div className='fixed flex z-10 inset-0 w-screen h-screen justify-center items-center'>
+    <div className='flex w-1/2 h-1/2 shadow-lg rounded-lg bg-black justify-center items-center'>
+      <img
+        style={{ opacity: 0.5 }}
+        src='https://res.cloudinary.com/dkit4ixkx/image/upload/v1643137690/videoplayback_uwltd5.gif'
+        width='100%'
+      ></img>
+    </div>
+  </div>
+);
+
+export const CompletionBar = ({ completionPct }) => (
+  <div className='flex w-full p-1 bg-slate-600'>
+    <div className='h-[10px] bg-slate-800' style={{ width: completionPct + '%' }} />
+  </div>
+);

@@ -1,4 +1,5 @@
 const { db, sequelize } = require('./index.js');
+const { STOCK_METADATA } = require('./data.js');
 
 //return an object with 1000 random price rows
 const getPrices = async () => {
@@ -7,20 +8,17 @@ const getPrices = async () => {
   const ticker = data[0][Math.floor(Math.random() * data[0].length)].ticker;
 
   //get all the prices
-  // const prices = await sequelize.query(
-  //   `SELECT * FROM prices WHERE ticker='${ticker}' ORDER BY id`
-  // );
-
-  const prices = await sequelize.query(`SELECT * FROM prices WHERE ticker='AMC' ORDER BY id`);
+  const prices = await sequelize.query(`SELECT * FROM prices WHERE ticker='${ticker}' ORDER BY id`);
 
   //randomly start from somewhere through N-1000
-  // const start = Math.floor(Math.random() * (prices[0].length - 1000));
-
-  const start = 0;
+  const start = Math.floor(Math.random() * (prices[0].length - 1000));
 
   //build output
   const out = {
     ticker,
+    url: STOCK_METADATA[ticker].url,
+    name: STOCK_METADATA[ticker].name,
+    description: STOCK_METADATA[ticker].description,
     start: '',
     end: '',
     prices: [],
