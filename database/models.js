@@ -7,12 +7,16 @@ const getPrices = async () => {
   const ticker = data[0][Math.floor(Math.random() * data[0].length)].ticker;
 
   //get all the prices
-  const prices = await sequelize.query(
-    `SELECT * FROM prices WHERE ticker='${ticker}' ORDER BY id`
-  );
+  // const prices = await sequelize.query(
+  //   `SELECT * FROM prices WHERE ticker='${ticker}' ORDER BY id`
+  // );
+
+  const prices = await sequelize.query(`SELECT * FROM prices WHERE ticker='AMC' ORDER BY id`);
 
   //randomly start from somewhere through N-1000
-  const start = Math.floor(Math.random() * (prices[0].length - 1000));
+  // const start = Math.floor(Math.random() * (prices[0].length - 1000));
+
+  const start = 0;
 
   //build output
   const out = {
