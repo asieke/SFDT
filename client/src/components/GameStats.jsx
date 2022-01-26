@@ -1,8 +1,6 @@
 import React from 'react';
 
 const GameStats = ({ portfolio, quote }) => {
-  console.log(portfolio, quote);
-
   const getTotal = () => {
     return portfolio.cash + portfolio.shares * quote.avg;
   };

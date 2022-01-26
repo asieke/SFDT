@@ -7,7 +7,7 @@ import GameOver from './GameOver';
 
 const App = () => {
   const [data, setData] = useState({});
-  const [status, setStatus] = useState(0);
+  const [status, setStatus] = useState(1);
   const [portfolio, setPortfolio] = useState({
     cash: 10000,
     shares: 0,
