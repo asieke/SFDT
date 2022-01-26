@@ -5,22 +5,22 @@ import Game from './Game';
 import StartGame from './StartGame';
 import GameOver from './GameOver';
 
+const DEFAULT = { cash: 10000, shares: 0, fees: 0, trades: [] };
+
 const App = () => {
   const [data, setData] = useState({});
   const [status, setStatus] = useState(1);
-  const [portfolio, setPortfolio] = useState({
-    cash: 10000,
-    shares: 0,
-    fees: 0,
-    trades: [],
-  });
+  const [portfolio, setPortfolio] = useState({ ...DEFAULT });
+
+  const setupGame = async () => {
+    let res = await axios.get('/getPrices');
+    setData(res.data);
+    setPortfolio({ ...DEFAULT });
+    setStatus(1);
+  };
 
   useEffect(() => {
-    const getData = async () => {
-      let res = await axios.get('/getPrices');
-      setData(res.data);
-    };
-    getData();
+    setupGame();
   }, []);
 
   return (
@@ -34,7 +34,7 @@ const App = () => {
           setPortfolio={setPortfolio}
         />
       )}
-      {status === 2 && <GameOver data={data} portfolio={portfolio} />}
+      {status === 2 && <GameOver data={data} portfolio={portfolio} next={() => setupGame()} />}
     </>
   );
 };

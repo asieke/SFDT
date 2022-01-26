@@ -46,4 +46,4 @@ const getPrices = async () => {
   return out;
 };
 
-module.exports = { getPrices };
+module.exports = { getPrices, addData };

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { numberWithCommas } from '../lib/functions';
+import { Button } from './Elements';
 import ReactTooltip from 'react-tooltip';
+import axios from 'axios';
 
-const GameOver = ({ data, portfolio }) => {
+const GameOver = ({ data, portfolio, next }) => {
   const getTotal = () => {
     return portfolio.cash + portfolio.shares * data.prices[data.prices.length - 1].avg;
   };
@@ -10,6 +12,7 @@ const GameOver = ({ data, portfolio }) => {
     return (10000 / data.prices[0].avg) * data.prices[data.prices.length - 1].avg;
   };
 
+  //TODO - UPDATE SIGNS HERE
   const out = {
     ticker: data.ticker,
     totalReturn: Math.abs(Math.round(1000 * (getTotal() / 10000 - 1)) / 10),
@@ -19,7 +22,12 @@ const GameOver = ({ data, portfolio }) => {
     totalFees: Math.round(10 * portfolio.fees) / 10,
     startDate: new Date(data.start).toLocaleDateString('en-US'),
     endDate: new Date(data.end).toLocaleDateString('en-US'),
+    numTrades: portfolio.trades.length,
   };
+
+  useEffect(() => {
+    axios.post('/addData', out);
+  }, []);
 
   return (
     <div className='flex flex-row flex-wrap p-8 rounded-lg m-12 bg-slate-800'>
@@ -37,7 +45,6 @@ const GameOver = ({ data, portfolio }) => {
           </p>
         </div>
       </div>
-
       <div className='w-1/2 pr-3'>
         <div className='font-sans	p-4 text-sm flex w-full items-center justify-center rounded-md bg-slate-700 shadow-md shadow-slate-900'>
           <div className='w-[80px]'>
@@ -57,7 +64,7 @@ const GameOver = ({ data, portfolio }) => {
                 <span className='text-red-600 font-extrabold'>${out.totalFees}</span> in trading
                 fees
               </a>{' '}
-              for your {portfolio.trades.length} trades.
+              for your {out.numTrades} trades.
             </p>
           </div>
         </div>
@@ -84,8 +91,7 @@ const GameOver = ({ data, portfolio }) => {
           </div>
         </div>
       </div>
-
-      <div className='w-full'>
+      <div className='w-full mb-6'>
         <div className='font-sans	p-4 mt-6 text-sm flex flex-row w-full items-stretch justify-center rounded-md bg-slate-700 shadow-md shadow-slate-900'>
           <div className='w-[120px]'>
             <img src='https://res.cloudinary.com/dkit4ixkx/image/upload/v1643158878/logo_r84qzf.svg' />
@@ -107,7 +113,7 @@ const GameOver = ({ data, portfolio }) => {
           </div>
         </div>
       </div>
-
+      <Button onClick={next}>Play Again!</Button>
       <ReactTooltip id='tradingFees' place='top' effect='solid'>
         <p>
           Trading platforms like Robinhood often advertise "free" trading.

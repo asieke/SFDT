@@ -10,13 +10,11 @@ const getPricesController = async (req, res) => {
 };
 
 const addDataController = async (req, res) => {
-  console.log('>>>>req body', req.body);
-
   try {
     let data = await addData(req.body);
     res.json(data);
   } catch (err) {
-    res.status(500).send('error getting prices');
+    res.status(500).send('error adding data');
   }
 };
 

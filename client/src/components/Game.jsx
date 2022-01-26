@@ -10,6 +10,10 @@ const Game = ({ data, next, portfolio, setPortfolio }) => {
   const [step, setStep] = useState(100);
   const completionPct = (100 * (step - 100)) / 900;
 
+  useEffect(() => {
+    setStep(100);
+  }, []);
+
   useInterval(() => {
     if (step < 999) {
       setStep(step + 1);
