@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useEffect } from 'react/cjs/react.development';
+import useInterval from '../lib/useInterval';
 
 export const Button = ({ size, children, onClick }) => {
   let str = `font-bold py-2 px-4 rounded shadow bg-emerald-700 hover:bg-emerald-500 text-emerald-50`;
@@ -12,19 +14,19 @@ export const Button = ({ size, children, onClick }) => {
   );
 };
 
-export const Countdown = () => (
-  // https://res.cloudinary.com/dkit4ixkx/image/upload/v1643137690/videoplayback_uwltd5.gif
+export const Countdown = ({ count }) => {
+  const text = ['3', '2', '1', 'GO!'];
 
-  <div className='fixed flex z-10 inset-0 w-screen h-screen justify-center items-center'>
-    <div className='flex w-1/2 h-1/2 shadow-lg rounded-lg bg-black justify-center items-center'>
-      <img
-        style={{ opacity: 0.5 }}
-        src='https://res.cloudinary.com/dkit4ixkx/image/upload/v1643137690/videoplayback_uwltd5.gif'
-        width='100%'
-      ></img>
+  return (
+    <div className='fixed flex z-20 inset-0 w-screen h-screen justify-center items-center'>
+      <div className='flex w-1/2 h-1/2 shadow-lg rounded-lg justify-center items-center'>
+        <h1 style={{ fontSize: '200px' }} className='animate-ping font-extrabold'>
+          {text[count] || ''}
+        </h1>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const CompletionBar = ({ completionPct }) => (
   <div className='flex w-full p-1 bg-slate-600'>

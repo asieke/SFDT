@@ -24,8 +24,6 @@ const Onboarding = ({ next }) => {
   };
 
   function trackScrolling() {
-    console.log(window.pageYOffset);
-
     if (window.pageYOffset > 0 && slide[0] === 0) animate(0);
     if (window.pageYOffset > 250 && slide[1] === 0) animate(1);
     if (window.pageYOffset > 500 && slide[2] === 0) animate(2);

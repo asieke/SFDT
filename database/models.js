@@ -2,7 +2,6 @@ const { db, sequelize } = require('./index.js');
 const { STOCKS } = require('./data.js');
 
 const addData = async (obj) => {
-  console.log('>>>>', obj);
   await db.Result.create(obj);
 };
 

@@ -5,8 +5,6 @@ import ReactTooltip from 'react-tooltip';
 import axios from 'axios';
 
 const GameOver = ({ data, portfolio, stats, next }) => {
-  console.log(stats);
-
   const getTotal = () => {
     return portfolio.cash + portfolio.shares * data.prices[data.prices.length - 1].avg;
   };
