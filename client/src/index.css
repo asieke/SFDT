@@ -6,6 +6,27 @@
     @apply pt-8;
     @apply text-slate-300;
   }
+  table {
+    border: 1px solid #777;
+    border-collapse: collapse;
+  }
+  th,
+  td {
+    border: 1px solid #777;
+    @apply p-2;
+    @apply font-normal;
+  }
+
+  td {
+    @apply text-xs;
+    @apply font-thin;
+    @apply text-center;
+  }
+
+  tr.totalRow,
+  th {
+    @apply bg-slate-800;
+  }
 }
 
 @tailwind components;

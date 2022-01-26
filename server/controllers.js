@@ -1,4 +1,4 @@
-const { getPrices, addData } = require('../database/models.js');
+const { getPrices, addData, getSummaryStats } = require('../database/models.js');
 
 const getPricesController = async (req, res) => {
   try {
@@ -18,4 +18,13 @@ const addDataController = async (req, res) => {
   }
 };
 
-module.exports = { getPricesController, addDataController };
+const getSummaryStatsController = async (req, res) => {
+  try {
+    let data = await getSummaryStats();
+    res.json(data);
+  } catch (err) {
+    res.status(500).send('error getting summary stats');
+  }
+};
+
+module.exports = { getPricesController, addDataController, getSummaryStatsController };

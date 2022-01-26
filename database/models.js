@@ -1,5 +1,5 @@
 const { db, sequelize } = require('./index.js');
-const { STOCK_METADATA } = require('./data.js');
+const { STOCKS } = require('./data.js');
 
 const addData = async (obj) => {
   console.log('>>>>', obj);
@@ -21,9 +21,8 @@ const getPrices = async () => {
   //build output
   const out = {
     ticker,
-    url: STOCK_METADATA[ticker].url,
-    name: STOCK_METADATA[ticker].name,
-    description: STOCK_METADATA[ticker].description,
+    name: STOCKS[ticker].name,
+    description: STOCKS[ticker].description,
     start: '',
     end: '',
     prices: [],
@@ -46,4 +45,48 @@ const getPrices = async () => {
   return out;
 };
 
-module.exports = { getPrices, addData };
+const getSummaryStats = async () => {
+  let data = await sequelize.query(`
+    SELECT
+      "ticker",
+      count(1) as num,
+      sum(case when "totalReturn" > "totalBenchmarkReturn" then 1 else 0 end) as beatMarket,
+      sum("totalBalance") as totalBalance,
+      sum("totalBenchmark") as totalBenchmark,
+      sum("totalFees") as totalFees
+    FROM results GROUP by ticker;
+  `);
+
+  let data2 = await sequelize.query(`
+    WITH temp AS (
+      SELECT
+      CASE when "numTrades" <= 3 then '0-3' when "numTrades" < 7 then '4-6' else '7+' END as bucket, *
+      FROM results
+    )
+    SELECT
+      bucket,
+      count(1) as num,
+      sum(case when "totalReturn" > "totalBenchmarkReturn" then 1 else 0 end) as beatMarket,
+      sum("totalBalance") as totalBalance,
+      sum("totalBenchmark") as totalBenchmark,
+      sum("totalFees") as totalFees
+    FROM temp GROUP BY bucket;
+  `);
+
+  let data3 = await sequelize.query(`
+  SELECT
+    'total' as ticker,
+    count(1) as num,
+    sum(case when "totalReturn" > "totalBenchmarkReturn" then 1 else 0 end) as beatMarket,
+    sum("totalBalance") as totalBalance,
+    sum("totalBenchmark") as totalBenchmark,
+    sum("totalFees") as totalFees
+  FROM results;
+`);
+  return {
+    tickerData: [...data[0], data3[0][0]],
+    bucketData: data2[0],
+  };
+};
+
+module.exports = { getPrices, addData, getSummaryStats };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { numToDollar } from '../lib/functions';
 
 const GameStats = ({ portfolio, quote }) => {
   const getTotal = () => {
@@ -7,21 +8,29 @@ const GameStats = ({ portfolio, quote }) => {
 
   return (
     <div className='flex-col w-full p-4 bg-slate-700 items-start'>
-      <div className='flex-col w-full p-2 mb-3 bg-slate-600 rounded-lg shadow'>
-        <p className='text-xs'>Total: </p>
-        <p className='text-base'>${getTotal()}</p>
+      <div className='flex-col w-full p-2 mb-4 bg-slate-600 rounded-lg shadow-sm shadow-slate-800'>
+        <p className='text-3xl text-center'>{numToDollar(quote.avg)}</p>
       </div>
-      <div className='flex-col w-full p-2 mb-3 bg-slate-600 rounded-lg shadow'>
-        <p className='text-xs'>Cash: </p>
-        <p className='text-base'>${portfolio.cash}</p>
+      <h1 className='text-center mb-4'>My Portfolio</h1>
+      <div className='flex-col w-full p-2 mb-4 bg-slate-600 rounded-lg shadow-sm shadow-slate-800'>
+        <p className='text-xs text-center'>Total </p>
+        <p className='text-base text-center'>${numToDollar(getTotal())}</p>
       </div>
-      <div className='flex-col w-full p-2 mb-3 bg-slate-600 rounded-lg shadow'>
-        <p className='text-xs'>Stock: </p>
-        <p className='text-base'>${portfolio.shares * quote.avg}</p>
+      <div className='flex-col w-full p-2 mb-4 bg-slate-600 rounded-lg shadow-sm shadow-slate-800'>
+        <p className='text-xs text-center'>Cash </p>
+        <p className='text-base text-center'>${numToDollar(portfolio.cash)}</p>
       </div>
-      <div className='flex-col w-full p-2 mb-3 bg-slate-600 rounded-lg shadow'>
-        <p className='text-xs'>Trading Fees: </p>
-        <p className='text-base'>${portfolio.fees}</p>
+      <div className='flex-col w-full p-2 mb-4 bg-slate-600 rounded-lg shadow-sm shadow-slate-800'>
+        <p className='text-xs text-center'>Stock </p>
+        <p className='text-base text-center'>${numToDollar(portfolio.shares * quote.avg)}</p>
+      </div>
+      <div className='flex-col w-full p-2 mb-4 bg-slate-600 rounded-lg shadow-sm shadow-slate-800'>
+        <p className='text-xs text-center '>Trading Fees </p>
+        <p className='text-base text-center'>${numToDollar(portfolio.fees)}</p>
+      </div>
+      <div className='flex-col w-full p-2 mb-4 bg-slate-600 rounded-lg shadow-sm shadow-slate-800'>
+        <p className='text-xs text-center '>Total Trades </p>
+        <p className='text-base text-center'>{portfolio.trades.length}</p>
       </div>
     </div>
   );

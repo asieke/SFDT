@@ -9,16 +9,24 @@ import Onboarding from './Onboarding';
 const DEFAULT = { cash: 10000, shares: 0, fees: 0, trades: [] };
 
 const App = () => {
-  const [data, setData] = useState({});
+  //-1 = Onbaording, 0 = Countdown, 1 = Gameplay, 2 = Gameover
   const [status, setStatus] = useState(-1);
+  const [data, setData] = useState({});
+  const [stats, setStats] = useState({});
   const [portfolio, setPortfolio] = useState({ ...DEFAULT });
 
   const setupGame = async () => {
     let res = await axios.get('/getPrices');
+    let res2 = await axios.get('/getData');
     setData(res.data);
     setPortfolio({ ...DEFAULT });
+    setStats(res2.data);
     setStatus(1);
   };
+
+  useEffect(() => {
+    setupGame();
+  }, []);
 
   return (
     <>
@@ -32,7 +40,9 @@ const App = () => {
           setPortfolio={setPortfolio}
         />
       )}
-      {status === 2 && <GameOver data={data} portfolio={portfolio} next={() => setupGame()} />}
+      {status === 2 && (
+        <GameOver data={data} portfolio={portfolio} stats={stats} next={() => setupGame()} />
+      )}
     </>
   );
 };

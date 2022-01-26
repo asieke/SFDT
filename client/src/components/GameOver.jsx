@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { numberWithCommas } from '../lib/functions';
+import { numberWithCommas, numToPct } from '../lib/functions';
 import { Button } from './Elements';
 import ReactTooltip from 'react-tooltip';
 import axios from 'axios';
 
-const GameOver = ({ data, portfolio, next }) => {
+const GameOver = ({ data, portfolio, stats, next }) => {
+  console.log(stats);
+
   const getTotal = () => {
     return portfolio.cash + portfolio.shares * data.prices[data.prices.length - 1].avg;
   };
@@ -12,7 +14,6 @@ const GameOver = ({ data, portfolio, next }) => {
     return (10000 / data.prices[0].avg) * data.prices[data.prices.length - 1].avg;
   };
 
-  //TODO - UPDATE SIGNS HERE
   const out = {
     ticker: data.ticker,
     totalReturn: Math.round(1000 * (getTotal() / 10000 - 1)) / 10,
@@ -91,6 +92,57 @@ const GameOver = ({ data, portfolio, next }) => {
         </div>
       </div>
       <div className='w-full mb-6'>
+        <div className='font-sans	px-8 py-6 mt-6 text-sm flex flex-col w-full rounded-md bg-slate-700 shadow-md shadow-slate-900'>
+          <p className='text-lg font-semibold mb-5'>How does your performance compare to others?</p>
+          <table>
+            <tbody>
+              <tr>
+                <th>Ticker</th>
+                <th>Games</th>
+                <th>Beat Market?</th>
+                <th>Winning %</th>
+                <th>Avg. Balance</th>
+                <th>Avg. Return</th>
+                <th>Avg. Benchmark</th>
+                <th>Avg. Benchmark Return</th>
+              </tr>
+              {stats.tickerData.map((x, i) => (
+                <tr key={i} className={x.ticker === 'total' ? 'totalRow' : ''}>
+                  <td>{x.ticker}</td>
+                  <td>{x.num}</td>
+                  <td>{x.beatmarket}</td>
+                  <td>{numToPct(x.beatmarket / x.num)}</td>
+                  <td>${numberWithCommas(Math.round(x.totalbalance / x.num))}</td>
+                  <td>
+                    {x.totalbalance / x.num > 10000 && (
+                      <p className='text-green-400'>
+                        {numToPct(x.totalbalance / x.num / 10000 - 1)}
+                      </p>
+                    )}
+                    {x.totalbalance / x.num <= 10000 && (
+                      <p className='text-red-400'>{numToPct(x.totalbalance / x.num / 10000 - 1)}</p>
+                    )}
+                  </td>
+                  <td>${numberWithCommas(Math.round(x.totalbenchmark / x.num))}</td>
+                  <td>
+                    {x.totalbenchmark / x.num > 10000 && (
+                      <p className='text-green-400'>
+                        {numToPct(x.totalbenchmark / x.num / 10000 - 1)}
+                      </p>
+                    )}
+                    {x.totalbenchmark / x.num <= 10000 && (
+                      <p className='text-red-400'>
+                        {numToPct(x.totalbenchmark / x.num / 10000 - 1)}
+                      </p>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div className='w-full mb-6'>
         <div className='font-sans	p-4 mt-6 text-sm flex flex-row w-full items-stretch justify-center rounded-md bg-slate-700 shadow-md shadow-slate-900'>
           <div className='w-[120px]'>
             <img src='https://res.cloudinary.com/dkit4ixkx/image/upload/v1643158878/logo_r84qzf.svg' />
@@ -112,6 +164,7 @@ const GameOver = ({ data, portfolio, next }) => {
           </div>
         </div>
       </div>
+
       <Button onClick={next}>Play Again!</Button>
       <ReactTooltip id='tradingFees' place='top' effect='solid'>
         <p>

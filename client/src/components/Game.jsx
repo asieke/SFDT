@@ -20,9 +20,10 @@ const Game = ({ data, next, portfolio, setPortfolio }) => {
     } else {
       next();
     }
-  }, 10);
+  }, 1000);
 
   const buy = (pct = 1) => {
+    console.log('BUY>>>', pct);
     let amount = portfolio.cash * pct;
     let fee = amount * 0.001;
     let shares = (amount - fee) / data.prices[step].avg;
@@ -43,6 +44,7 @@ const Game = ({ data, next, portfolio, setPortfolio }) => {
   };
 
   const sell = (pct = 1) => {
+    console.log('Sell>>>', pct);
     let shares = portfolio.shares * pct;
     let amount = shares * data.prices[step].avg;
     let fee = amount * 0.001;
@@ -70,7 +72,7 @@ const Game = ({ data, next, portfolio, setPortfolio }) => {
       <div className='md:w-3/4 flex-col'>
         <CompletionBar completionPct={completionPct} />
         <GameChart data={data} step={step} />
-        <GameControls buy={() => buy()} sell={() => sell()} />
+        <GameControls portfolio={portfolio} buy={(pct) => buy(pct)} sell={(pct) => sell(pct)} />
       </div>
     </div>
   );
