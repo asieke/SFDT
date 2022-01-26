@@ -26,16 +26,16 @@ const Onboarding = ({ next }) => {
   function trackScrolling() {
     console.log(window.pageYOffset);
 
-    if (window.pageYOffset > 100 && slide[0] === 0) animate(0);
-    if (window.pageYOffset > 350 && slide[1] === 0) animate(1);
-    if (window.pageYOffset > 600 && slide[2] === 0) animate(2);
-    if (window.pageYOffset > 850 && slide[3] === 0) animate(3);
-    if (window.pageYOffset > 1100 && slide[4] === 0) animate(4);
-    if (window.pageYOffset > 1350 && slide[5] === 0) animate(5);
-    if (window.pageYOffset > 1600 && slide[6] === 0) animate(6);
-    if (window.pageYOffset > 1850 && slide[7] === 0) animate(7);
-    if (window.pageYOffset > 2100 && slide[8] === 0) animate(8);
-    if (window.pageYOffset > 2350 && slide[9] === 0) animate(9);
+    if (window.pageYOffset > 0 && slide[0] === 0) animate(0);
+    if (window.pageYOffset > 250 && slide[1] === 0) animate(1);
+    if (window.pageYOffset > 500 && slide[2] === 0) animate(2);
+    if (window.pageYOffset > 750 && slide[3] === 0) animate(3);
+    if (window.pageYOffset > 1000 && slide[4] === 0) animate(4);
+    if (window.pageYOffset > 1250 && slide[5] === 0) animate(5);
+    if (window.pageYOffset > 1500 && slide[6] === 0) animate(6);
+    if (window.pageYOffset > 1750 && slide[7] === 0) animate(7);
+    if (window.pageYOffset > 2000 && slide[8] === 0) animate(8);
+    if (window.pageYOffset > 2250 && slide[9] === 0) animate(9);
   }
 
   useEffect(() => {
@@ -51,7 +51,7 @@ const Onboarding = ({ next }) => {
   return (
     <div className='bg-grad flex flex-col bg-grey-line overflow-hidden rounded-xl bg-slate-700 mx-20 my-10 shadow-2xl shadow-slate-600/50 border-8 border-slate-600'>
       <div
-        className='flex flex-col p-8 w-full items-center'
+        className='flex flex-col p-8 w-full items-center from-slate-700 bg-gradient-to-b'
         style={{ textShadow: '3px 3px 0 #333' }}
       >
         <h1 className='text-8xl font-bold text-center mt-10'>
@@ -77,12 +77,12 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 1 --------- */}
       <div className='w-full flex flex-row-reverse mb-20'>
         <div className='rightSection w-[90%] flex flex-row' slide={slide[0]}>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600 '>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[0]} className='rounded-full' />
             </div>
           </div>
-          <div className='bg-slate-300 flex-grow flex-col -ml-[80px] '>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 flex-col -ml-[80px] '>
             <div className='ml-[90px] p-5 '>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>What is Day Trading?</p>
               <p className='text-lg text-slate-600 mb-2 font-thin'>
@@ -97,7 +97,7 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 2 --------- */}
       <div className='w-full flex flex-row mb-20'>
         <div className='leftSection w-[90%] flex flex-row' slide={slide[1]}>
-          <div className='bg-slate-300 flex-grow -mr-[80px]'>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 -mr-[80px]'>
             <div className='mr-[90px] p-5 text-right'>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>When did Day Trading Start?</p>
               <p className='text-lg text-slate-600 mb-2 font-thin'>
@@ -106,7 +106,7 @@ const Onboarding = ({ next }) => {
               </p>
             </div>
           </div>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600 '>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[1]} className='rounded-full' />
             </div>
@@ -117,12 +117,12 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 3 --------- */}
       <div className='w-full flex flex-row-reverse mb-20'>
         <div className='rightSection w-[90%] flex flex-row' slide={slide[2]}>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600 '>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[2]} className='rounded-full' />
             </div>
           </div>
-          <div className='bg-slate-300 flex-grow flex-col -ml-[80px] '>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 flex-col -ml-[80px] '>
             <div className='ml-[90px] p-5 '>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>
                 Dot Com Bubble Pops & 2008 Recession
@@ -140,7 +140,7 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 4 --------- */}
       <div className='w-full flex flex-row mb-20'>
         <div className='leftSection w-[90%] flex flex-row' slide={slide[3]}>
-          <div className='bg-slate-300 flex-grow -mr-[80px]'>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 -mr-[80px]'>
             <div className='mr-[90px] p-5 text-right'>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>
                 Index Funds and Passive Investing
@@ -151,7 +151,7 @@ const Onboarding = ({ next }) => {
               </p>
             </div>
           </div>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600 '>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[3]} className='rounded-full' />
             </div>
@@ -162,12 +162,12 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 5 --------- */}
       <div className='w-full flex flex-row-reverse mb-20'>
         <div className='rightSection w-[90%] flex flex-row' slide={slide[4]}>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600 '>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[4]} className='rounded-full' />
             </div>
           </div>
-          <div className='bg-slate-300 flex-grow flex-col -ml-[80px] '>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 flex-col -ml-[80px] '>
             <div className='ml-[90px] p-5 '>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>What is Passive Investing?</p>
               <p className='text-sm text-slate-600 mb-2 font-thin'>
@@ -187,7 +187,7 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 6 --------- */}
       <div className='w-full flex flex-row mb-20'>
         <div className='leftSection w-[90%] flex flex-row' slide={slide[5]}>
-          <div className='bg-slate-300 flex-grow -mr-[80px]'>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 -mr-[80px]'>
             <div className='mr-[90px] p-5 text-right'>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>Why are markets efficient?</p>
               <p className='text-sm text-slate-600 mb-2 font-thin'>
@@ -200,7 +200,7 @@ const Onboarding = ({ next }) => {
               </p>
             </div>
           </div>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600 '>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[5]} className='rounded-full' />
             </div>
@@ -210,12 +210,12 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 7 --------- */}
       <div className='w-full flex flex-row-reverse mb-20'>
         <div className='rightSection w-[90%] flex flex-row' slide={slide[6]}>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600 '>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[6]} className='rounded-full' />
             </div>
           </div>
-          <div className='bg-slate-300 flex-grow flex-col -ml-[80px] '>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 flex-col -ml-[80px] '>
             <div className='ml-[90px] p-5 '>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>Enter Crypto and Robinhood</p>
               <p className='text-lg text-slate-600 mb-2 font-thin'>
@@ -231,7 +231,7 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 8 --------- */}
       <div className='w-full flex flex-row mb-20'>
         <div className='leftSection w-[90%] flex flex-row' slide={slide[7]}>
-          <div className='bg-slate-300 flex-grow -mr-[80px]'>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 -mr-[80px]'>
             <div className='mr-[90px] p-5 text-right'>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>The (false) Promise of GAINZ</p>
               <p className='text-lg text-slate-600 mb-2 font-thin'>
@@ -241,7 +241,7 @@ const Onboarding = ({ next }) => {
               </p>
             </div>
           </div>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600 '>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[7]} className='rounded-full' />
             </div>
@@ -252,12 +252,12 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 9 --------- */}
       <div className='w-full flex flex-row-reverse mb-20'>
         <div className='rightSection w-[90%] flex flex-row' slide={slide[8]}>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600 '>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[8]} className='rounded-full' />
             </div>
           </div>
-          <div className='bg-slate-300 flex-grow flex-col -ml-[80px] '>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 flex-col -ml-[80px] '>
             <div className='ml-[90px] p-5 '>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>WallStreetBets YOLO</p>
               <p className='text-lg text-slate-600 mb-2 font-thin'>
@@ -273,16 +273,16 @@ const Onboarding = ({ next }) => {
       {/* --------- SECTION 10 --------- */}
       <div className='w-full flex flex-row mb-20'>
         <div className='leftSection w-[90%] flex flex-row' slide={slide[9]}>
-          <div className='bg-slate-300 flex-grow -mr-[80px]'>
+          <div className='bg-slate-300 flex-grow shadow-md shadow-slate-500 -mr-[80px]'>
             <div className='mr-[90px] p-5 text-right'>
               <p className='text-2xl text-slate-700 mb-3 font-bold'>What can you do?</p>
               <p className='text-lg text-slate-600 mb-2 font-thin'>
-                Easy! Stop giing money to these terrible legalized casinos. Go buy <br />
+                Easy! Stop giving money to these terrible legalized casinos. Go buy <br />
                 some boring old index funds or open an account at Vanguard.
               </p>
             </div>
           </div>
-          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-sky-600'>
+          <div className='flex items-center justify-center z-10 rounded-full h-[160px] w-[160px] bg-red-600 shadow-lg shadow-slate-600'>
             <div className='bg-slate-400 rounded-full h-[120px] w-[120px]'>
               <img src={IMAGES[9]} className='rounded-full' />
             </div>
@@ -291,11 +291,24 @@ const Onboarding = ({ next }) => {
       </div>
 
       <div className='w-full flex flex-row mb-20 justify-center'>
-        <div className='w-[80%] flex flex-col bg-slate-300 p-8 rounded-xl text-center items-center'>
-          <h1 className='text-3xl text-slate-800 font-bold'>Don't take our word for it!</h1>
-          <p className='text-xl text-slate-800 mt-4'>Try to beat the market!!</p>
-          <button onClick={next} className='p-4 bg-sky-600 w-[50%] rounded-l mt-5 hover:bg-sky-800'>
-            TRY TO BEAT THE MARKET
+        <div className='w-[80%] flex flex-col bg-slate-300 p-8 rounded-xl text-center items-center shadow-lg shadow-slate-600'>
+          <h1 className='text-3xl text-slate-800 font-bold'>
+            Still think you can beat the market??
+          </h1>
+          <p className='text-l text-slate-600 mt-4 font-light'>
+            You will have 1:00 to day trade a random stock from our database.
+          </p>
+          <p className='text-l text-slate-600 mt-4 font-light'>
+            You simulated trading will take place over a random 3-month period from the past 5 years
+          </p>
+          <p className='text-l text-slate-600 mt-4 font-light'>
+            After you finish, you can see how you and others have fared
+          </p>
+          <button
+            onClick={next}
+            className='p-4 bg-red-700  w-[50%] rounded-l mt-5 hover:bg-red-800'
+          >
+            I want to try to beat the market!
           </button>
         </div>
       </div>

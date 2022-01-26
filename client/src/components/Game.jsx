@@ -25,7 +25,7 @@ const Game = ({ data, next, portfolio, setPortfolio }) => {
   const buy = (pct = 1) => {
     let amount = portfolio.cash * pct;
     let fee = amount * 0.001;
-    let shares = amount / data.prices[step].avg;
+    let shares = (amount - fee) / data.prices[step].avg;
     let trade = {
       action: 'buy',
       amount,
@@ -34,7 +34,7 @@ const Game = ({ data, next, portfolio, setPortfolio }) => {
       price: data.prices[step].avg,
     };
     let temp = {
-      cash: portfolio.cash - amount - fee,
+      cash: portfolio.cash - amount,
       shares: portfolio.shares + shares,
       fees: portfolio.fees + fee,
       trades: [...portfolio.trades, trade],

@@ -15,7 +15,7 @@ const StartGame = ({ next }) => {
   }, []);
 
   return (
-    <div className='md:flex p-4 rounded-lg m-12'>
+    <div className='w-full h-full bg-black'>
       <Countdown />
     </div>
   );

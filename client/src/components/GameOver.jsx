@@ -33,10 +33,7 @@ const GameOver = ({ data, portfolio, next }) => {
     <div className='flex flex-row flex-wrap p-8 rounded-lg m-12 bg-slate-800'>
       <h1 className='text-4xl font-mono font-bold mb-6'>Your Trading Report</h1>
       <div className='font-sans	p-4 mb-6 text-sm flex w-full items-center justify-center rounded-md bg-slate-700 shadow-md shadow-slate-900'>
-        <div className='w-[80px]'>
-          <img src={data.url} className='h-[60px] rounded-full shadow-md shadow-slate-900' />
-        </div>
-        <div className='flex-col ml-2 grow'>
+        <div className='flex-col w-full'>
           <p className='text-lg font-semibold'>{data.name}</p>
           <p className='text-sm font-light'>{data.description}</p>
           <p className='text-sm font-light'>
