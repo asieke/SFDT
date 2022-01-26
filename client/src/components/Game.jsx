@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import useInterval from '../lib/useInterval';
 import GameStats from './GameStats';
 import GameChart from './GameChart';
@@ -9,19 +10,15 @@ const Game = ({ data, next, portfolio, setPortfolio }) => {
   const [step, setStep] = useState(100);
   const completionPct = (100 * (step - 100)) / 900;
 
-  useEffect(() => {
-    console.log('hello');
-  }, []);
-
   useInterval(() => {
     if (step < 999) {
       setStep(step + 1);
     } else {
       next();
     }
-  }, 25);
+  }, 10);
 
-  const buy = (pct = 0.5) => {
+  const buy = (pct = 1) => {
     let amount = portfolio.cash * pct;
     let fee = amount * 0.001;
     let shares = amount / data.prices[step].avg;
@@ -53,7 +50,7 @@ const Game = ({ data, next, portfolio, setPortfolio }) => {
       price: data.prices[step].avg,
     };
     let temp = {
-      cash: portfolio.cash + amount,
+      cash: portfolio.cash + amount - fee,
       shares: portfolio.shares - shares,
       fees: portfolio.fees + fee,
       trades: [...portfolio.trades, trade],

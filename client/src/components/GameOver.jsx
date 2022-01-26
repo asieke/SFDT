@@ -10,12 +10,13 @@ const GameOver = ({ data, portfolio }) => {
     return (10000 / data.prices[0].avg) * data.prices[data.prices.length - 1].avg;
   };
 
-  const print = {
-    totalReturn: Math.abs(Math.round(1000 * (getTotal() / 10000 - 1)) / 10) + '%',
-    totalBalance: '$' + numberWithCommas(Math.round(getTotal())),
-    totalBenchmarkReturn: Math.abs(Math.round(1000 * (getBenchmark() / 10000 - 1)) / 10) + '%',
-    totalBenchmark: '$' + numberWithCommas(Math.round(getBenchmark())),
-    totalFees: '$' + numberWithCommas(Math.round(10 * portfolio.fees) / 10),
+  const out = {
+    ticker: data.ticker,
+    totalReturn: Math.abs(Math.round(1000 * (getTotal() / 10000 - 1)) / 10),
+    totalBalance: Math.round(getTotal()),
+    totalBenchmarkReturn: Math.abs(Math.round(1000 * (getBenchmark() / 10000 - 1)) / 10),
+    totalBenchmark: Math.round(getBenchmark()),
+    totalFees: Math.round(10 * portfolio.fees) / 10,
     startDate: new Date(data.start).toLocaleDateString('en-US'),
     endDate: new Date(data.end).toLocaleDateString('en-US'),
   };
@@ -31,8 +32,8 @@ const GameOver = ({ data, portfolio }) => {
           <p className='text-lg font-semibold'>{data.name}</p>
           <p className='text-sm font-light'>{data.description}</p>
           <p className='text-sm font-light'>
-            Your simulated trading game was for {data.ticker} during the period of {print.startDate}{' '}
-            to {print.endDate}
+            Your simulated trading game was for {data.ticker} during the period of {out.startDate}{' '}
+            to {out.endDate}
           </p>
         </div>
       </div>
@@ -41,18 +42,19 @@ const GameOver = ({ data, portfolio }) => {
         <div className='font-sans	p-4 text-sm flex w-full items-center justify-center rounded-md bg-slate-700 shadow-md shadow-slate-900'>
           <div className='w-[80px]'>
             {getTotal() > 10000 && (
-              <p className='text-2xl font-bold text-green-600'>{print.totalReturn}</p>
+              <p className='text-2xl font-bold text-green-600'>{out.totalReturn}%</p>
             )}
             {getTotal() <= 10000 && (
-              <p className='text-2xl font-bold text-red-600'>{print.totalReturn}</p>
+              <p className='text-2xl font-bold text-red-600'>{out.totalReturn}%</p>
             )}
           </div>
           <div className='flex-col ml-3 grow'>
             <p className='text-lg font-semibold'>Your Total Return</p>
             <p className='text-sm font-light leading-6'>
-              You started with $10,000 and ended up with {print.totalBalance}. You paid{' '}
+              You started with $10,000 and ended up with ${numberWithCommas(out.totalBalance)}. You
+              paid{' '}
               <a data-tip data-for='tradingFees' className='cursor-pointer bg-slate-800 p-1'>
-                <span className='text-red-600 font-extrabold'>{print.totalFees}</span> in trading
+                <span className='text-red-600 font-extrabold'>${out.totalFees}</span> in trading
                 fees
               </a>{' '}
               for your {portfolio.trades.length} trades.
@@ -64,10 +66,10 @@ const GameOver = ({ data, portfolio }) => {
         <div className='font-sans	p-4 text-sm flex w-full items-center justify-center rounded-md bg-slate-700 shadow-md shadow-slate-900'>
           <div className='w-[80px]'>
             {getBenchmark() > 10000 && (
-              <p className='text-2xl font-bold text-green-600'>{print.totalBenchmarkReturn}</p>
+              <p className='text-2xl font-bold text-green-600'>{out.totalBenchmarkReturn}%</p>
             )}
             {getBenchmark() <= 10000 && (
-              <p className='text-2xl font-bold text-red-600'>{print.totalBenchmarkReturn}</p>
+              <p className='text-2xl font-bold text-red-600'>{out.totalBenchmarkReturn}%</p>
             )}
           </div>
           <div className='flex-col ml-3 grow'>
@@ -75,7 +77,7 @@ const GameOver = ({ data, portfolio }) => {
             <p className='text-sm font-light leading-6'>
               If you had taken your $10,000 and just bought and held you would have{' '}
               <a data-tip data-for='dividends' className='cursor-pointer bg-slate-800 p-1'>
-                ended up with {print.totalBenchmark}
+                ended up with ${numberWithCommas(out.totalBenchmark)}
               </a>
               . Also, you would have only paid about $5 in trading fees.
             </p>

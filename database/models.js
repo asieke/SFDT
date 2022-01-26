@@ -1,6 +1,11 @@
 const { db, sequelize } = require('./index.js');
 const { STOCK_METADATA } = require('./data.js');
 
+const addData = async (obj) => {
+  console.log('>>>>', obj);
+  await db.Result.create(obj);
+};
+
 //return an object with 1000 random price rows
 const getPrices = async () => {
   //get distinct tickers and select a random one
