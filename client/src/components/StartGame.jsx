@@ -10,12 +10,13 @@ const StartGame = ({ next }) => {
     setTimeout(next, 5000);
   };
 
+  useEffect(() => {
+    initializeGame();
+  }, []);
+
   return (
     <div className='md:flex p-4 rounded-lg m-12'>
-      {showCountdown && <Countdown />}
-      <Button size='large' onClick={initializeGame}>
-        Play
-      </Button>
+      <Countdown />
     </div>
   );
 };

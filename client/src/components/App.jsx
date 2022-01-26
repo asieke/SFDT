@@ -4,12 +4,13 @@ import axios from 'axios';
 import Game from './Game';
 import StartGame from './StartGame';
 import GameOver from './GameOver';
+import Onboarding from './Onboarding';
 
 const DEFAULT = { cash: 10000, shares: 0, fees: 0, trades: [] };
 
 const App = () => {
   const [data, setData] = useState({});
-  const [status, setStatus] = useState(1);
+  const [status, setStatus] = useState(-1);
   const [portfolio, setPortfolio] = useState({ ...DEFAULT });
 
   const setupGame = async () => {
@@ -19,13 +20,10 @@ const App = () => {
     setStatus(1);
   };
 
-  useEffect(() => {
-    setupGame();
-  }, []);
-
   return (
     <>
-      {status === 0 && <StartGame next={() => setStatus(1)} />}
+      {status === -1 && <Onboarding next={() => setStatus(0)} />}
+      {status === 0 && <StartGame next={() => setupGame()} />}
       {status === 1 && data.prices && (
         <Game
           data={data}

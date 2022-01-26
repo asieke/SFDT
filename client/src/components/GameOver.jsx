@@ -15,9 +15,9 @@ const GameOver = ({ data, portfolio, next }) => {
   //TODO - UPDATE SIGNS HERE
   const out = {
     ticker: data.ticker,
-    totalReturn: Math.abs(Math.round(1000 * (getTotal() / 10000 - 1)) / 10),
+    totalReturn: Math.round(1000 * (getTotal() / 10000 - 1)) / 10,
     totalBalance: Math.round(getTotal()),
-    totalBenchmarkReturn: Math.abs(Math.round(1000 * (getBenchmark() / 10000 - 1)) / 10),
+    totalBenchmarkReturn: Math.round(1000 * (getBenchmark() / 10000 - 1)) / 10,
     totalBenchmark: Math.round(getBenchmark()),
     totalFees: Math.round(10 * portfolio.fees) / 10,
     startDate: new Date(data.start).toLocaleDateString('en-US'),
@@ -52,7 +52,7 @@ const GameOver = ({ data, portfolio, next }) => {
               <p className='text-2xl font-bold text-green-600'>{out.totalReturn}%</p>
             )}
             {getTotal() <= 10000 && (
-              <p className='text-2xl font-bold text-red-600'>{out.totalReturn}%</p>
+              <p className='text-2xl font-bold text-red-600'>{Math.abs(out.totalReturn)}%</p>
             )}
           </div>
           <div className='flex-col ml-3 grow'>
@@ -76,7 +76,9 @@ const GameOver = ({ data, portfolio, next }) => {
               <p className='text-2xl font-bold text-green-600'>{out.totalBenchmarkReturn}%</p>
             )}
             {getBenchmark() <= 10000 && (
-              <p className='text-2xl font-bold text-red-600'>{out.totalBenchmarkReturn}%</p>
+              <p className='text-2xl font-bold text-red-600'>
+                {Math.abs(out.totalBenchmarkReturn)}%
+              </p>
             )}
           </div>
           <div className='flex-col ml-3 grow'>

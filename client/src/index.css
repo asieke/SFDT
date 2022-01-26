@@ -9,4 +9,15 @@
 }
 
 @tailwind components;
+
+@layer components {
+  .bg-grey-line {
+    background: #fff;
+    background: linear-gradient(180deg, transparent, #666, transparent);
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: 20px auto;
+  }
+}
+
 @tailwind utilities;
