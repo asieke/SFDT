@@ -24,16 +24,16 @@ const Onboarding = ({ next }) => {
   };
 
   function trackScrolling() {
-    if (window.pageYOffset > 0 && slide[0] === 0) animate(0);
-    if (window.pageYOffset > 250 && slide[1] === 0) animate(1);
-    if (window.pageYOffset > 500 && slide[2] === 0) animate(2);
-    if (window.pageYOffset > 750 && slide[3] === 0) animate(3);
-    if (window.pageYOffset > 1000 && slide[4] === 0) animate(4);
-    if (window.pageYOffset > 1250 && slide[5] === 0) animate(5);
-    if (window.pageYOffset > 1500 && slide[6] === 0) animate(6);
-    if (window.pageYOffset > 1750 && slide[7] === 0) animate(7);
-    if (window.pageYOffset > 2000 && slide[8] === 0) animate(8);
-    if (window.pageYOffset > 2250 && slide[9] === 0) animate(9);
+    if (window.pageYOffset > 250 && slide[0] === 0) animate(0);
+    if (window.pageYOffset > 500 && slide[1] === 0) animate(1);
+    if (window.pageYOffset > 750 && slide[2] === 0) animate(2);
+    if (window.pageYOffset > 1000 && slide[3] === 0) animate(3);
+    if (window.pageYOffset > 1250 && slide[4] === 0) animate(4);
+    if (window.pageYOffset > 1500 && slide[5] === 0) animate(5);
+    if (window.pageYOffset > 1750 && slide[6] === 0) animate(6);
+    if (window.pageYOffset > 2000 && slide[7] === 0) animate(7);
+    if (window.pageYOffset > 2250 && slide[8] === 0) animate(8);
+    if (window.pageYOffset > 2500 && slide[9] === 0) animate(9);
   }
 
   useEffect(() => {

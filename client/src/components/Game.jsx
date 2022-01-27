@@ -76,7 +76,6 @@ const Game = ({ data, next, portfolio, setPortfolio }) => {
         <CompletionBar completionPct={completionPct} />
         <GameChart data={data} step={step} />
         <GameControls portfolio={portfolio} buy={(pct) => buy(pct)} sell={(pct) => sell(pct)} />
-        {step}
       </div>
     </div>
   );

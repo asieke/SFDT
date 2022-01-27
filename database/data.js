@@ -1,11 +1,11 @@
 module.exports.STOCKS = {
   AAPL: {
     name: 'Apple Computer',
-    description: "The world's largest comapny and maker of overpriced phones",
+    description: '',
   },
   TSLA: {
     name: 'Tesla',
-    description: 'A company that sells 17 cars and year and is somehow worth 100x as much as Ford',
+    description: '',
   },
   GOOG: {
     name: 'Google',
