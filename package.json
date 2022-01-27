@@ -10,7 +10,8 @@
     "react-dev": "webpack --watch",
     "seedDB": "node database/sync.js",
     "webpack": "webpack",
-    "tailwind": "tailwind build -i ./client/src/index.css -o ./client/dist/output.css"
+    "tailwind": "tailwind build -i ./client/src/index.css -o ./client/dist/output.css",
+    "build": "webpack && tailwind build -i ./client/src/index.css -o ./client/dist/output.css"
   },
   "repository": {
     "type": "git",
