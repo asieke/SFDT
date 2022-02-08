@@ -2,6 +2,8 @@
 
 ![STOP F](https://user-images.githubusercontent.com/4070885/150874453-e70a639f-7e27-4f2b-bb84-99a41a26dce3.svg)
 
+PLAY: https://sfdt.onrender.com/
+
 ## Heading
 
 Stop Daytrading before you start!
